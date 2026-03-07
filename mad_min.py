@@ -16,8 +16,9 @@ def generate_worksheet(num_problems):
     for i in range(num_problems // problems_per_group):
 
         for j in range(problems_per_group):
-            operand1 = random.randint(1, 9999)
-            operand2 = 7 #random.randint(0, 9)
+            operand1 = random.randint(1, 99)
+            #operand2 = 7 #random.randint(0, 9)
+            operand2 = random.randint(1,20)
             result = operand1 * operand2
 
             problem = f"{operand1} x {operand2} = _____"
