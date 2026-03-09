@@ -77,6 +77,7 @@ def generate_pdf():
 
     c.showPage()
     c.save()
+    return "mad_min_wksht_test01.pdf"
 
 
 if __name__ == '__main__':
