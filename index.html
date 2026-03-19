@@ -1,13 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Multiplication Worksheet Generator</title>
+<title>Mad Minute Generator</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f4f6fb;
+}
+
+.hero {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+.options {
+    margin: 30px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45a049;
+}
+.preview {
+    margin-top: 10px;
+}
+
+.preview img {
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.15);
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.card {
+    padding: 25px;
+    font-size: 24px;
+    border-radius: 12px;
+    border: none;
+    background: #45a049;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+    background: #4CAF50;
+    color: white;
+}
+
+
+</style>
 </head>
+
 <body>
-
+<div class="hero">
 <h1>Mad Minute Generator</h1>
+<p>Create unlimited multiplication practice worksheets instantly.</p>
+</div>
 
-<button onclick="generate()">Generate Worksheet</button>
+<div class="preview">
+
+<h2>Example Worksheet</h2>
+
+<img src="worksheet_preview.png" 
+     alt="Mad Minute Worksheet Preview"
+     style="width:400px;border:2px solid #ddd;border-radius:10px;">
+
+</div>
+
+<div class="options">
+
+<button onclick="generate()">Generate A Random Worksheet</button>
+<br><br>
+<H2>Practice single digit Multiplication!</H2>
+<p>Actually I sneak in the 10s, so technically there is some double digit multiplication.</p>
+<div class="card-grid">
+<button class="card" onclick="generate_single_digit(2)">2s</button>
+<button class="card" onclick="generate_single_digit(3)">3s</button>
+<button class="card" onclick="generate_single_digit(4)">4s</button>
+<button class="card" onclick="generate_single_digit(5)">5s</button>
+<button class="card" onclick="generate_single_digit(6)">6s</button>
+<button class="card" onclick="generate_single_digit(7)">7s</button>
+<button class="card" onclick="generate_single_digit(8)">8s</button>
+<button class="card" onclick="generate_single_digit(9)">9s</button>
+</div>
+</div>
 
 <script src="script.js"></script>
 
