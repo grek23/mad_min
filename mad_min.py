@@ -8,17 +8,31 @@ WIDTH_OFFSET = 36
 CHAR_SIZE = 12/72  # for size 12 font, a char should take up this many inches in height
 
 
-def generate_worksheet(num_problems):
+def generate_worksheet(num_problems, oper1, oper2):
     column_width = 15
     problems_per_group = 3
     problem_list = []
+    max_value = 99
+    double_flag = False
+    if oper1 == "single":
+        max_value = 10
+    elif oper1 == "double":
+        max_value = 99
+        double_flag = True
+    else:
+        max_value = 99
 
+    print(f"inside generate_worksheet(), max_value = {max_value}")
     for i in range(num_problems // problems_per_group):
 
         for j in range(problems_per_group):
-            operand1 = random.randint(1, 99)
+            operand1 = random.randint(1, max_value)
             #operand2 = 7 #random.randint(0, 9)
-            operand2 = random.randint(1,10)
+            #operand2 = random.randint(1,10)
+            if double_flag:
+                operand2 = random.randint(1,max_value)
+            else:
+                operand2 = oper2
             result = operand1 * operand2
 
             problem = f"{operand1} x {operand2} = _____"
@@ -45,10 +59,17 @@ def gen_answer_matrix(p_list):
     
     return M
 
-def generate_pdf():
+def generate_pdf(fn="worksheet.pdf", digit_value="2", oper2=random.randint(1,10)):
     num_problems = 3*18
-    p_list = generate_worksheet(num_problems)
-    c = canvas.Canvas("mad_min_wksht_test01.pdf", pagesize=letter)
+    oper1 = digit_value
+    print(f"Inside genrate_pdf - digit_value = {digit_value}, oper2 = {oper2}")
+    if digit_value == "s":
+        oper1 = "single"
+    elif digit_value == "r":
+        oper1 = "double"
+    print(f"Oper1 = {oper1}, oper2 = {oper2}")
+    p_list = generate_worksheet(num_problems,oper1, oper2)
+    c = canvas.Canvas(fn, pagesize=letter)
     column_width = 180
     header_str = "Name_________________        Mad Minute"
     c.drawString(WIDTH_OFFSET, HEIGHT - HEIGHT_OFFSET, header_str)
@@ -77,8 +98,8 @@ def generate_pdf():
 
     c.showPage()
     c.save()
-    return "mad_min_wksht_test01.pdf"
+    return fn
 
 
 if __name__ == '__main__':
-    generate_pdf()
+    generate_pdf("greks_11s.pdf", "r",9)
